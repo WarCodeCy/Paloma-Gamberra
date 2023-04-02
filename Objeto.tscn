@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/proyectil_bueno.png" type="Texture" id=1]
+[ext_resource path="res://Objeto.gd" type="Script" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "grande",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 10.198
+
+[node name="Objeto" type="RigidBody2D"]
+position = Vector2( 69, 26 )
+collision_layer = 0
+gravity_scale = 0.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+velocidad_min = 125
+velocidad_max = 250
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 4.5, 3.75 )
+scale = Vector2( 1.9, 1.83333 )
+frames = SubResource( 1 )
+animation = "grande"
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 5, 4 )
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4.5, 4 )
+scale = Vector2( 0.95, 0.8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
